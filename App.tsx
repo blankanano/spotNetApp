@@ -7,28 +7,17 @@ import { NavigationContainer } from "@react-navigation/native";
 import { DefaultTheme, PaperProvider } from 'react-native-paper';
 import { createStackNavigator } from '@react-navigation/stack';
 import Login from "./src/screens/Login";
-
 import 'react-native-gesture-handler';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { enableScreens } from 'react-native-screens';
+import { MMKV } from "react-native-mmkv";
 
 /* Acrescentada para tentar resolver o problema da chamada do wrapper */
 enableScreens();
 
-// const theme = {
-//   ...DefaultTheme,
-//   colors: {
-//     primary: '#ff0000',
-//     secondary: '#00ff00',
-//   }
-// }
-
-// import { MMKV } from "react-native-mmkv";
-
-// export const storage = new MMKV({
-//   id: "movieapp",
-// });
-
+export const storage = new MMKV({
+  id: "movieapp",
+});
 
 const StackNavigator = createStackNavigator();
 
@@ -38,18 +27,18 @@ export default function App() {
   const [user, setUser] = useState<IUser | null>(null);
   console.log("Passou pelo setstate");
 
-  // useEffect(() => {
-  //   if (user != null) {
-  //     storage.set("user", JSON.stringify(user));
-  //   }
-  // }, [user]);
+  useEffect(() => {
+    if (user != null) {
+      storage.set("user", JSON.stringify(user));
+    }
+  }, [user]);
 
-  // useEffect(() => {
-  //   const userDb = storage.getString("user");
-  //   if (userDb) {
-  //     setUser(JSON.parse(userDb));
-  //   }
-  // }, []);
+  useEffect(() => {
+    const userDb = storage.getString("user");
+    if (userDb) {
+      setUser(JSON.parse(userDb));
+    }
+  }, []);
 
   /* Exemplo do professor, que não funciona */
   // return (
