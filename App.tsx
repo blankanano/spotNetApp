@@ -8,6 +8,13 @@ import { DefaultTheme, PaperProvider } from 'react-native-paper';
 import { createStackNavigator } from '@react-navigation/stack';
 import Login from "./src/screens/Login";
 
+import 'react-native-gesture-handler';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { enableScreens } from 'react-native-screens';
+
+/* Acrescentada para tentar resolver o problema da chamada do wrapper */
+enableScreens();
+
 // const theme = {
 //   ...DefaultTheme,
 //   colors: {
@@ -21,6 +28,7 @@ import Login from "./src/screens/Login";
 // export const storage = new MMKV({
 //   id: "movieapp",
 // });
+
 
 const StackNavigator = createStackNavigator();
 
@@ -43,6 +51,7 @@ export default function App() {
   //   }
   // }, []);
 
+  /* Exemplo do professor, que não funciona */
   // return (
   //   <NativeBaseProvider theme={THEME}>
   //     <UserContext.Provider value={{ user: user, setUser }}>
@@ -54,17 +63,37 @@ export default function App() {
   //   </NativeBaseProvider>
   // );
 
+  /* Chamando direto, funciona */
   return (
     <NativeBaseProvider theme={THEME}>
       <PaperProvider>
         <UserContext.Provider value={{ user: user, setUser }}>
           <NavigationContainer>
-            <StackNavigator.Navigator initialRouteName="Login">
+          {/* { <Wrapper /> } */}
+
+            { <StackNavigator.Navigator initialRouteName="Login">
               <StackNavigator.Screen name="Login" component={Login} options={{ title: 'Login' }} />
-            </StackNavigator.Navigator>
+            </StackNavigator.Navigator> }
           </NavigationContainer>
         </UserContext.Provider>
       </PaperProvider>
     </NativeBaseProvider>
   );
+
+  /* Envolvida pelo GestureHandlerRootView, e tbm não funciona */
+  // return (
+  //   <NativeBaseProvider theme={THEME}>
+  //     <PaperProvider>
+  //       <UserContext.Provider value={{ user: user, setUser }}>
+  //         <GestureHandlerRootView>
+  //           <NavigationContainer>
+  //             <Wrapper />
+  //           </NavigationContainer>
+  //         </GestureHandlerRootView>
+  //       </UserContext.Provider>
+  //     </PaperProvider>
+  //   </NativeBaseProvider>
+  // );
+
+
 }
