@@ -6,7 +6,7 @@
   </a>
 </p>
 
-> React-Native APP Mapa
+> React-Native APP SpotNet
 
 ### SPOT NET APP
 
