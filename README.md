@@ -1,3 +1,34 @@
+<h1 align="center">Bem vindo SpotNetApp 👋</h1>
+<p>
+  <img alt="Version" src="https://img.shields.io/badge/version-0.0.1-blue.svg?cacheSeconds=2592000" />
+  <a href="#" target="_blank">
+    <img alt="License: UNLICENSED" src="https://img.shields.io/badge/License-UNLICENSED-yellow.svg" />
+  </a>
+</p>
+
+> React-Native APP Mapa
+
+### SPOT NET APP
+
+  Projeto para contemplar a finalização da matéria.
+  Este app foi desenvolvido para atender os requisitos do módulo de desenvolvimento back-end com react native e fornece nessa primeira versão um aplicativo, que consome uma API (https://musicapi-w7kn.onrender.com/) para realização do Login (https://musicapi-w7kn.onrender.com/user/login), Registro do usuário (https://musicapi-w7kn.onrender.com/user/register) e após a autenticação, temos apresentação dos albuns (https://musicapi-w7kn.onrender.com/albums) e stories (https://musicapi-w7kn.onrender.com/stories).
+
+  Um app simples, mas bem intuitivo para um início de aprendizagem, visto que não conheço muito mobile e por isso tive muitas dificuldades para entender e consequentemente aplicar o que foi lecionado, mas nada que o não pudesse pesquisar e atender o que foi pedido. Porém, gostei e pretendo buscar mais conhecimento e assim fazer um projeto melhor futuramente.
+
+REPOSITÓRIO:
+https://github.com/blankanano/spotNetApp.git
+
+Professor:
+Gabriel Guimarães Silva
+
+Aluno
+Adriano da Silva
+
+<br/>
+<br/>
+<br/>
+<br/>
+
 This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
 
 # Getting Started
