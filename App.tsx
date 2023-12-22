@@ -61,7 +61,6 @@ export default function App() {
     <NativeBaseProvider theme={THEME}>
       <UserContext.Provider value={{ user, setUser }}>
         <AlbumProvider>
-          {/* Adicionando o AlbumProvider aqui */}
           <StatusBar barStyle={'dark-content'} />
           <GestureHandlerRootView style={{ flex: 1 }}>
             <NavigationContainer>
@@ -77,5 +76,4 @@ export default function App() {
       </UserContext.Provider>
     </NativeBaseProvider>
   );
-
 }

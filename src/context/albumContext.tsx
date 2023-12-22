@@ -47,7 +47,7 @@ export const AlbumProvider: React.FC<AlbumProviderProps> = ({ children }) => {
 export const useAlbumContext = () => {
   const context = useContext(AlbumContext);
   if (!context) {
-    throw new Error("useAlbumContext must be used within an AlbumProvider");
+    throw new Error("useAlbumContext deve ser usado dentro de um AlbumProvider");
   }
   return context;
 };

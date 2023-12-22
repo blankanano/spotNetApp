@@ -22,7 +22,6 @@ type IUserContext = {
   setUser: (userData: IUser | null) => void; // Função para atualizar as informações do usuário
 };
 
-
 // ID para armanezagem no dispositivo
 export const storage = new MMKV({
   id: 'movieapp'

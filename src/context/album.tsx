@@ -26,10 +26,13 @@ export function removeFavAlbum(id: string) {
 export const albumsContext: IAlbum[] = [];
 
 export const musicsDemo = [
-    { id: '1', name: 'Musica 01' },
-    { id: '2', name: 'Musica 02' },
-    { id: '3', name: 'Musica 03' },
-    { id: '4', name: 'Musica 04' },
+    { id: '1', name: 'Oh My God' },
+    { id: '2', name: 'Poupa no chão' },
+    { id: '3', name: 'Derere Dow Dow' },
+    { id: '4', name: 'Não Precisa Coreção' },
+    { id: '5', name: 'Bla Bla Bla' },
+    { id: '6', name: 'Tapinha' },
+    { id: '7', name: 'Carinhosamente' },
 ]
 
 const AlbumContext = createContext<IAlbumContext | null>({ album: null, setAlbum: () => { } });

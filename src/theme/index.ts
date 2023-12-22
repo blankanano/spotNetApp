@@ -6,10 +6,10 @@ const THEME = extendTheme({
         primary: {
             100: '#000000'
         },
-        seconday: {
+        secondary: {
             100: '#ffffff'
-        }
-    }
+        },
+    },
 });
 
 export const styles = StyleSheet.create({
@@ -19,17 +19,14 @@ export const styles = StyleSheet.create({
       flexDirection: "row"
     },
     quadradoA: {
-    //   backgroundColor: "green",
       height: "100%",
       width: "20%",
     },
     quadradoB: {
-    //   backgroundColor: "blue",
       height: "100%",
       flex: 1,
     },
     quadradoC: {
-    //   backgroundColor: "orange",
       height: "100%",
       flex: 2,
     }

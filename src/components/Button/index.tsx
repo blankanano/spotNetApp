@@ -1,6 +1,5 @@
 import { Icon, Button as NativeButton } from "native-base";
 
-
 interface Props {
     content: string;
     variation?: string;

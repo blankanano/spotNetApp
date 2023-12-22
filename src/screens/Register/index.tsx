@@ -1,4 +1,4 @@
-import { Flex, Heading, Icon, Input, Pressable } from "native-base";
+import { Flex, Heading, Input, Pressable } from "native-base";
 import React, { useState } from "react";
 import Button from "../../components/Button";
 import { register } from "../../services/auth";
@@ -19,14 +19,6 @@ export default function Register() {
           .then(function (response) {
              console.log(response);
              Alert.alert("Conta criada com sucesso!", "Faça login para continuar");
-            // try {
-            //   login({username, password}).then(function (response) {
-            //     navigator.navigate('Home');
-            //   });
-              
-            // } catch (error : any) {
-            //   Alert.alert(error.message);
-            // }
           })
           .catch(function (error) {
             Alert.alert(error.message);
@@ -61,8 +53,6 @@ export default function Register() {
                 <Flex width={'100%'}>
                     <Button  content="Registrar" handleClick={()=> {handleRegister()}}/>
                 </Flex>
-
-                
             </Flex>
     );
 }
