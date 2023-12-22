@@ -1,9 +1,11 @@
-import { Text } from "native-base";
-
+import React from "react"
+import {Text} from "react-native"
+import BoxCustom from "../Box"
 interface Props {
-  text: string;
+    text : string
 }
-
-export default function Selected({ text }: Props) {
-  return <Text color="secondary.100">{text}</Text>;
+export default function Selected({text} : Props) {
+    return (
+        <BoxCustom bg="gray.500" children={<Text >{text}</Text>} width="100%" p="4" shadow={5} />
+    )
 }

@@ -8,7 +8,7 @@ export default function Reset() {
       alignItems="center"
       bg="primary.100"
     >
-      <Heading>RESETAR MINHA SENHA</Heading>
+      <Heading>Resetar minha senha</Heading>
     </Flex>
   );
 }

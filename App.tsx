@@ -1,34 +1,23 @@
-import { NativeBaseProvider } from "native-base";
-import THEME from "./src/theme";
-import UserContext, { IUser } from "./src/context/user";
-import Wrapper from "./src/screens/Wrapper";
-import { useEffect, useState } from "react";
-import { NavigationContainer } from "@react-navigation/native";
-import { DefaultTheme, PaperProvider } from 'react-native-paper';
+import { NativeBaseProvider,  StatusBar} from 'native-base';
+import THEME from './src/theme';
+import Wrapper from './src/screens/Wrapper';
+import { useEffect, useState } from 'react';
+import UserContext, { IUser, storage } from './src/context/user';
+import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import Login from "./src/screens/Login";
-import 'react-native-gesture-handler';
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import { enableScreens } from 'react-native-screens';
-import { MMKV } from "react-native-mmkv";
-
-/* Acrescentada para tentar resolver o problema da chamada do wrapper */
-enableScreens();
-
-export const storage = new MMKV({
-  id: "movieapp",
-});
-
-const StackNavigator = createStackNavigator();
+import Home from './src/screens/Home';
+import Albums from './src/screens/Albuns';
+import Artist from './src/screens/Artist';
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { login } from './src/services/auth';
+import { AlbumProvider } from './src/context/albumContext';
 
 export default function App() {
-  //
-  console.log("Entrou no APP");
   const [user, setUser] = useState<IUser | null>(null);
-  console.log("Passou pelo setstate");
+  const Stack = createStackNavigator();
 
   useEffect(() => {
-    if (user != null) {
+    if(user != null){
       storage.set("user", JSON.stringify(user));
     }
   }, [user]);
@@ -36,53 +25,57 @@ export default function App() {
   useEffect(() => {
     const userDb = storage.getString("user");
     if (userDb) {
-      setUser(JSON.parse(userDb));
-    }
+      setUser(JSON.parse(userDb)); 
+      
+      login({name: userDb.name, password: userDb.password})
+        .then((res) => {})
+        .catch((erro) => {
+          if(erro.message.indexOf("401") >= 0){
+            // Usuario não autorizado - apaga dados locais
+            storage.delete("user");
+          }
+        })
+    }   
   }, []);
 
-  /* Exemplo do professor, que não funciona */
   // return (
   //   <NativeBaseProvider theme={THEME}>
-  //     <UserContext.Provider value={{ user: user, setUser }}>
-  //       {/* <StatusBar style="auto" /> */}
-  //       <NavigationContainer>
-  //         { <Wrapper /> }
-  //       </NavigationContainer>
+  //     <UserContext.Provider value={{ user, setUser }}>
+  //       <StatusBar barStyle={"dark-content"} />
+  //       <GestureHandlerRootView style={{ flex: 1 }}>
+  //         <NavigationContainer>
+  //           <Stack.Navigator initialRouteName='Home' screenOptions={{ headerShown: false }}>
+  //             <Stack.Screen name='Wrapper' component={Wrapper} />
+  //             <Stack.Screen name='Home' component={Home} />
+  //             <Stack.Screen name='Albums' component={Albums} options={{headerShown: false}} />
+  //             <Stack.Screen name='Artist' component={Artist} options={{headerShown: true, title: "Artista"}} />
+  //           </Stack.Navigator>
+  //         </NavigationContainer>
+  //       </GestureHandlerRootView>
+
   //     </UserContext.Provider>
   //   </NativeBaseProvider>
   // );
 
-  /* Chamando direto, funciona */
   return (
     <NativeBaseProvider theme={THEME}>
-      <PaperProvider>
-        <UserContext.Provider value={{ user: user, setUser }}>
-          <NavigationContainer>
-          {/* { <Wrapper /> } */}
-
-            { <StackNavigator.Navigator initialRouteName="Login">
-              <StackNavigator.Screen name="Login" component={Login} options={{ title: 'Login' }} />
-            </StackNavigator.Navigator> }
-          </NavigationContainer>
-        </UserContext.Provider>
-      </PaperProvider>
+      <UserContext.Provider value={{ user, setUser }}>
+        <AlbumProvider>
+          {/* Adicionando o AlbumProvider aqui */}
+          <StatusBar barStyle={'dark-content'} />
+          <GestureHandlerRootView style={{ flex: 1 }}>
+            <NavigationContainer>
+              <Stack.Navigator initialRouteName='Home' screenOptions={{ headerShown: false }}>
+                <Stack.Screen name='Wrapper' component={Wrapper} />
+                <Stack.Screen name='Home' component={Home} />
+                <Stack.Screen name='Albums' component={Albums} options={{ headerShown: false }} />
+                <Stack.Screen name='Artist' component={Artist} options={{ headerShown: true, title: 'Artista' }} />
+              </Stack.Navigator>
+            </NavigationContainer>
+          </GestureHandlerRootView>
+        </AlbumProvider>
+      </UserContext.Provider>
     </NativeBaseProvider>
   );
-
-  /* Envolvida pelo GestureHandlerRootView, e tbm não funciona */
-  // return (
-  //   <NativeBaseProvider theme={THEME}>
-  //     <PaperProvider>
-  //       <UserContext.Provider value={{ user: user, setUser }}>
-  //         <GestureHandlerRootView>
-  //           <NavigationContainer>
-  //             <Wrapper />
-  //           </NavigationContainer>
-  //         </GestureHandlerRootView>
-  //       </UserContext.Provider>
-  //     </PaperProvider>
-  //   </NativeBaseProvider>
-  // );
-
 
 }
