@@ -1,9 +1,10 @@
-import { createContext, useState } from "react";
+import { createContext } from "react";
 
 export type IAlbum = {
     id: string;
     album: string;
     img: string;
+    music: string;
 }
 
 type IAlbumContext = {

@@ -8,7 +8,7 @@ import Storie from "../../components/Storie";
 import { getAlbums, getStories } from "../../services/albuns";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
-import AlbumContext, { IAlbum, albumsContext, favAlbums } from "../../context/album";
+import AlbumContext, { IAlbum, albumsContext } from "../../context/album";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 
 export default function Home() {
@@ -38,7 +38,7 @@ export default function Home() {
     // }, [selectedId]);
 
     useEffect(() => {
-        if (selectedId && selectedId !== "0" && albums) {
+        if (selectedId && +selectedId !== 0 && albums) {
             const album = albums.find((element: any) => element.id === selectedId);
             if (album) {
                 navigation.navigate("Albums", { id: album.id });

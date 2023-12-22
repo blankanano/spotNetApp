@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import UserContext from "../../context/user";
-import {  Flex, Heading, Icon, Input, Link, Pressable } from "native-base";
+import {  Flex, Heading, Icon, Input, Pressable } from "native-base";
 import Button from "../../components/Button";
 import { Alert  } from "react-native";
 import { login } from "../../services/auth";

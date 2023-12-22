@@ -15,9 +15,6 @@
 
   Um app simples, mas bem intuitivo para um início de aprendizagem, visto que não conheço muito mobile e por isso tive muitas dificuldades para entender e consequentemente aplicar o que foi lecionado, mas nada que o não pudesse pesquisar e atender o que foi pedido. Porém, gostei e pretendo buscar mais conhecimento e assim fazer um projeto melhor futuramente.
 
-REPOSITÓRIO:
-https://github.com/blankanano/spotNetApp.git
-
 Professor:
 Gabriel Guimarães Silva
 
@@ -28,6 +25,7 @@ Adriano da Silva
 <br/>
 <br/>
 <br/>
+
 
 This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
 
@@ -43,11 +41,11 @@ To start Metro, run the following command from the _root_ of your React Native p
 
 ```bash
 # using npm
+npm install or npm install --force
 npm start
 
 # OR using Yarn
 yarn start
-```
 
 ## Step 2: Start your Application
 

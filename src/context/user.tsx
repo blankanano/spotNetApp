@@ -4,7 +4,7 @@ import { MMKV } from "react-native-mmkv";
 export type RootStackParamList = {
   Wrapper: { id: number } | undefined;
   Home: { id: number } | undefined;
-  Albums: { id: number } | undefined;
+  Albums: { id: string | number } | undefined;
   Artist: { id : string, name : string, img : string } | undefined;
 };
 

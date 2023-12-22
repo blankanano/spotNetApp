@@ -22,20 +22,35 @@ export default function App() {
     }
   }, [user]);
 
+  // useEffect(() => {
+  //   const userDb = storage.getString("user");
+  //   if (userDb) {
+  //     setUser(JSON.parse(userDb)); 
+      
+  //     login({name: userDb.name, password: userDb.password})
+  //       .then((res) => {})
+  //       .catch((erro) => {
+  //         if(erro.message.indexOf("401") >= 0){
+  //           // Usuario não autorizado - apaga dados locais
+  //           storage.delete("user");
+  //         }
+  //       })
+  //   }   
+  // }, []);
+
   useEffect(() => {
     const userDb = storage.getString("user");
     if (userDb) {
-      setUser(JSON.parse(userDb)); 
-      
-      login({name: userDb.name, password: userDb.password})
+      const parsedUser = JSON.parse(userDb);
+      setUser(parsedUser);
+      login({ name: parsedUser.name, password: parsedUser.password })
         .then((res) => {})
         .catch((erro) => {
-          if(erro.message.indexOf("401") >= 0){
-            // Usuario não autorizado - apaga dados locais
+          if (erro.message.indexOf("401") >= 0) {
             storage.delete("user");
           }
-        })
-    }   
+        });
+    }
   }, []);
 
   // return (

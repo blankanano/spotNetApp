@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, Image, Flex, Box, Heading, FlatList, HStack, VStack, Spacer, IconButton, View } from "native-base";
+import { Text, Image, Flex, Box, Heading, FlatList, Spacer, IconButton, View } from "native-base";
 import { musicsDemo } from "../../context/album";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { styles } from "../../theme";
